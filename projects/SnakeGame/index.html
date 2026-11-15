@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rắn Săn Mồi - Snake</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <div class="game-info">
+            <div class="score-box">
+                <span>LEVEL <b id="level-display">1</b></span>
+                <span>ĐIỂM: <b id="score-display">0</b></span>
+            </div>
+            <div class="controls-top">
+                <button onclick="togglePause()" id="btn-pause"><i class="fa-solid fa-pause"></i></button>
+                <button onclick="restartGame()" id="btn-restart"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            
+            <!-- Màn hình bắt đầu / Kết thúc -->
+            <div id="overlay" class="overlay">
+                <h1 id="overlay-title">SNAKE GAME</h1>
+                <p id="overlay-msg">Nhấn nút để bắt đầu</p>
+                <button onclick="startGame()" class="btn-start">CHƠI NGAY</button>
+            </div>
+        </div>
+
+        <!-- Lịch sử điểm số -->
+        <div class="history-panel">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đấu</h3>
+            <ul id="history-list">
+                <!-- JS sẽ render lịch sử vào đây -->
+            </ul>
+            <button onclick="clearHistory()" class="btn-clear">Xóa lịch sử</button>
+        </div>
+
+        <!-- Điều khiển Mobile -->
+        <div class="mobile-controls">
+            <button onclick="changeDirection('up')"><i class="fa-solid fa-arrow-up"></i></button>
+            <div class="row">
+                <button onclick="changeDirection('left')"><i class="fa-solid fa-arrow-left"></i></button>
+                <button onclick="changeDirection('down')"><i class="fa-solid fa-arrow-down"></i></button>
+                <button onclick="changeDirection('right')"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

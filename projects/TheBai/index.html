@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doggo Match</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="level-info">Level: <span id="level-display">1</span></div>
+            <button onclick="restartLevel()" class="btn-restart"><i class="fa-solid fa-rotate-right"></i></button>
+        </div>
+
+        <!-- Khu vực chơi (Các thẻ bài xếp chồng) -->
+        <div id="board" class="board">
+            <!-- Tiles sẽ được JS tạo ra ở đây -->
+        </div>
+
+        <!-- Khay chứa thẻ (Dock) -->
+        <div class="tray-container">
+            <div id="tray" class="tray">
+                <!-- Các thẻ đã chọn nằm ở đây -->
+            </div>
+        </div>
+
+        <!-- Màn hình kết thúc -->
+        <div id="end-screen" class="hidden">
+            <h2 id="end-message">Chiến thắng!</h2>
+            <button onclick="nextLevel()" id="next-btn">Màn tiếp theo</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

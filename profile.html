@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Phan Minh Thuan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { background: #020617; font-family: 'Plus Jakarta Sans', sans-serif; color: #e2e8f0; }
+        .glass-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Light Mode Support */
+        body.light-mode { background: #f0f9ff; color: #1e293b; }
+        body.light-mode .glass-card { background: rgba(255, 255, 255, 0.75); border-color: rgba(0,0,0,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        body.light-mode .text-white { color: #0f172a !important; }
+        body.light-mode .text-slate-300 { color: #475569 !important; }
+        body.light-mode .text-slate-400 { color: #64748b !important; }
+        body.light-mode .bg-slate-700 { background: #cbd5e1 !important; }
+        body.light-mode .hover\:text-white:hover { color: #020617 !important; }
+
+        /* Season Effects */
+        #season-effect { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .particle { position: absolute; top: -20px; animation: fall linear forwards; opacity: 0.8; }
+        @keyframes fall { to { transform: translateY(105vh) rotate(720deg); } }
+
+        /* Season Themes (Background Tints) */
+        body.season-spring { background: linear-gradient(to bottom right, #1a0510, #020617); }
+        body.season-summer { background: linear-gradient(to bottom right, #0f172a, #0c4a6e); }
+        body.season-autumn { background: linear-gradient(to bottom right, #1f0f05, #020617); }
+        body.season-winter { background: linear-gradient(to bottom right, #0b1120, #1e293b); }
+        
+        /* Light mode overrides for seasons */
+        body.light-mode.season-spring { background: linear-gradient(to bottom right, #fff1f2, #f0f9ff); }
+        body.light-mode.season-autumn { background: linear-gradient(to bottom right, #fff7ed, #f0f9ff); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div id="app-header"></div>
+
+        <main id="page-content">
+        <div class="glass-card w-full p-8 rounded-3xl relative shadow-2xl animate-fade-in mb-12">
+            <!-- Intro Section -->
+            <div class="mb-12 border-b border-white/10 pb-12">
+<h3 class="text-blue-400 mb-6 font-mono text-2xl font-extrabold tracking-tight">
+                        Fullstack Developer & <span class="text-emerald-400">UI/UX Designer</span>
+                    </h3>
+                    <p class="text-slate-300 leading-relaxed text-lg text-justify opacity-90">
+                        Xin chào! Tôi là một lập trình viên đam mê xây dựng các ứng dụng web đẹp mắt và hiệu quả. 
+                        Tôi thích khám phá công nghệ mới và tạo ra các sản phẩm mang lại giá trị thực tế, tối ưu hóa trải nghiệm người dùng cuối.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                <i class="fa-solid fa-chart-pie text-blue-400 text-sm"></i>
+                            </span>
+                            Biểu đồ năng lực
+                        </h3>
+                        <div class="relative w-full aspect-square bg-white/5 rounded-3xl p-6 border border-white/10 shadow-xl backdrop-blur-md">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-3xl border border-white/5">
+                        <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Trạng thái hiện tại</h4>
+                        <div class="space-y-3" id="status-container">
+                            <div class="text-center text-xs text-slate-500 animate-pulse">Đang tải thông tin...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                            <i class="fa-solid fa-list-check text-emerald-400 text-sm"></i>
+                        </span>
+                        Chi tiết kỹ năng
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4" id="skills-container">
+                        <div class="flex flex-col items-center justify-center py-12 space-y-4 col-span-full">
+                            <div class="w-8 h-8 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+                            <div class="text-slate-500 font-medium animate-pulse">Đang đồng bộ dữ liệu...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+
+        <div id="app-footer"></div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+    {
+        const SKILLS_SHEET_URL = 'https://docs.google.com/spreadsheets/d/19rqJdnmV1fH4QhrrNCrTOZEKBZuXoXbYLXGwIERwy-o/gviz/tq?tqx=out:csv&gid=2007917407'; 
+
+        const STATUS_SHEET_URL = 'https://docs.google.com/spreadsheets/d/19rqJdnmV1fH4QhrrNCrTOZEKBZuXoXbYLXGwIERwy-o/gviz/tq?tqx=out:csv&gid=1013341258';
+
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        let skillsChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Mức độ',
+                    data: [],
+                    backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                    borderColor: '#38bdf8',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#38bdf8',
+                    pointBorderColor: '#fff',
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                devicePixelRatio: 2,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { 
+                            color: '#94a3b8', 
+                            font: { size: 11, family: "'Plus Jakarta Sans'", weight: '600' } 
+                        },
+                        ticks: { display: false },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        async function fetchSkillsData() {
+            try {
+                const response = await fetch(SKILLS_SHEET_URL);
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);
+                
+                const skills = rows.map(row => {
+                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+                    if (cols.length < 2) return null;
+                    return {
+                        label: cols[0],
+                        percent: parseInt(cols[1]),
+                        desc: cols[2],
+                        icon: cols[3],
+                        color: cols[4] || 'blue'
+                    };
+                }).filter(s => s);
+
+                updateChart(skills);
+                renderSkillsList(skills);
+            } catch (error) {
+                document.getElementById('skills-container').innerHTML = '<div class="text-red-400 text-center">Lỗi tải dữ liệu</div>';
+            }
+        }
+
+        async function fetchStatusData() {
+            try {
+                const response = await fetch(STATUS_SHEET_URL);
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);
+                
+                const container = document.getElementById('status-container');
+                container.innerHTML = '';
+
+                rows.forEach(row => {
+                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+                    if (cols.length < 2) return;
+
+                    const html = `
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-300">${cols[0]}:</span>
+                            <span class="text-${cols[2] || 'white'}-400 font-bold">${cols[1]}</span>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            } catch (error) {
+                console.error("Lỗi tải Status:", error);
+                document.getElementById('status-container').innerHTML = '<div class="text-xs text-red-400 text-center">Lỗi tải dữ liệu</div>';
+            }
+        }
+
+        function updateChart(skills) {
+            skillsChart.data.labels = skills.map(s => s.label);
+            skillsChart.data.datasets[0].data = skills.map(s => s.percent);
+            skillsChart.update();
+        }
+
+        function renderSkillsList(skills) {
+            const container = document.getElementById('skills-container');
+            container.innerHTML = '';
+
+            const themes = {
+                'blue': { text: 'text-blue-400', bg: 'bg-blue-500/10', bar: 'bg-blue-500', border: 'border-blue-500/20' },
+                'emerald': { text: 'text-emerald-400', bg: 'bg-emerald-500/10', bar: 'bg-emerald-500', border: 'border-emerald-500/20' },
+                'pink': { text: 'text-pink-400', bg: 'bg-pink-500/10', bar: 'bg-pink-500', border: 'border-pink-500/20' },
+                'orange': { text: 'text-orange-400', bg: 'bg-orange-500/10', bar: 'bg-orange-500', border: 'border-orange-500/20' },
+                'purple': { text: 'text-purple-400', bg: 'bg-purple-500/10', bar: 'bg-purple-500', border: 'border-purple-500/20' }
+            };
+
+            skills.forEach((skill, index) => {
+                const theme = themes[skill.color] || themes['blue'];
+                const html = `
+                    <div class="group bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl ${theme.bg} flex items-center justify-center border ${theme.border} group-hover:scale-110 transition-transform">
+                                    <i class="${skill.icon} ${theme.text} text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg">${skill.label}</h4>
+                                    <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">${skill.percent}% Proficiency</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed line-clamp-2 hover:line-clamp-none transition-all cursor-pointer flex-grow">${skill.desc}</p>
+                        
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-auto">
+                            <div class="h-full ${theme.bar} shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-all duration-1000 ease-out" 
+                                 style="width: 0%" 
+                                 data-percent="${skill.percent}">
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+
+            // Hiệu ứng chạy thanh Progress
+            setTimeout(() => {
+                document.querySelectorAll('[data-percent]').forEach(el => {
+                    el.style.width = el.getAttribute('data-percent') + '%';
+                });
+            }, 100);
+        }
+
+        fetchSkillsData();
+        fetchStatusData();
+    }
+    </script>
+</body>
+</html>

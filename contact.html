@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Phan Minh Thuan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { background: #020617; font-family: 'Plus Jakarta Sans', sans-serif; color: #e2e8f0; }
+        .glass-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Light Mode Support */
+        body.light-mode { background: #f0f9ff; color: #1e293b; }
+        body.light-mode .glass-card { background: rgba(255, 255, 255, 0.75); border-color: rgba(0,0,0,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        body.light-mode .text-white { color: #0f172a !important; }
+        body.light-mode .text-slate-300 { color: #475569 !important; }
+        body.light-mode .text-slate-400 { color: #64748b !important; }
+        body.light-mode .bg-slate-900 { background: #e2e8f0 !important; }
+        body.light-mode .hover\:text-white:hover { color: #020617 !important; }
+        body.light-mode input, body.light-mode textarea { background: rgba(0,0,0,0.05); color: #1e293b; border-color: rgba(0,0,0,0.1); }
+
+        /* Season Effects */
+        #season-effect { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .particle { position: absolute; top: -20px; animation: fall linear forwards; opacity: 0.8; }
+        @keyframes fall { to { transform: translateY(105vh) rotate(720deg); } }
+
+        /* Season Themes */
+        body.season-spring { background: linear-gradient(to bottom right, #1a0510, #020617); }
+        body.season-summer { background: linear-gradient(to bottom right, #0f172a, #0c4a6e); }
+        body.season-autumn { background: linear-gradient(to bottom right, #1f0f05, #020617); }
+        body.season-winter { background: linear-gradient(to bottom right, #0b1120, #1e293b); }
+        body.light-mode.season-spring { background: linear-gradient(to bottom right, #fff1f2, #f0f9ff); }
+        body.light-mode.season-autumn { background: linear-gradient(to bottom right, #fff7ed, #f0f9ff); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div id="app-header"></div>
+
+        <main id="page-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-4">Liên hệ & Kết nối</h2>
+                        <p class="text-slate-400 leading-relaxed">
+                            Tôi luôn sẵn sàng cho các cơ hội hợp tác mới. Nếu bạn có bất kỳ câu hỏi nào hoặc muốn thảo luận về dự án, đừng ngần ngại liên hệ với tôi.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 text-xl"><i class="fa-solid fa-envelope"></i></div>
+                            <div><p class="text-xs text-slate-500 uppercase font-bold">Email</p><p class="text-white font-mono">thugoodcat@gmail.com</p></div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl"><i class="fa-brands fa-discord"></i></div>
+                            <div><p class="text-xs text-slate-500 uppercase font-bold">Discord</p><p class="text-white font-mono">phanthuanvn</p></div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 text-xl"><i class="fa-solid fa-location-dot"></i></div>
+                            <div><p class="text-xs text-slate-500 uppercase font-bold">Địa chỉ</p><p class="text-white">Ho Chi Minh City, Vietnam</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-xl font-bold text-white mb-6">Gửi tin nhắn</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Tính năng đang được phát triển!');">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-xs text-slate-400 font-bold uppercase">Tên của bạn</label>
+                                <input type="text" class="w-full bg-slate-900/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs text-slate-400 font-bold uppercase">Email</label>
+                                <input type="email" class="w-full bg-slate-900/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs text-slate-400 font-bold uppercase">Chủ đề</label>
+                            <input type="text" class="w-full bg-slate-900/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="Hợp tác dự án...">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs text-slate-400 font-bold uppercase">Nội dung</label>
+                            <textarea rows="4" class="w-full bg-slate-900/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="Nội dung tin nhắn..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-bold py-3 rounded-lg hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all transform hover:-translate-y-1">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Gửi tin nhắn
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <div id="app-footer"></div>
+    </div>
+
+    <script src="layout.js"></script>
+</body>
+</html>

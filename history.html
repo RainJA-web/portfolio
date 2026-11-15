@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Phan Minh Thuan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { background: #020617; font-family: 'Plus Jakarta Sans', sans-serif; color: #e2e8f0; }
+        .glass-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Light Mode Support */
+        body.light-mode { background: #f0f9ff; color: #1e293b; }
+        body.light-mode .glass-card { background: rgba(255, 255, 255, 0.75); border-color: rgba(0,0,0,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        body.light-mode .text-white { color: #0f172a !important; }
+        body.light-mode .text-slate-400 { color: #64748b !important; }
+        body.light-mode .bg-slate-900 { background: #e2e8f0 !important; }
+        body.light-mode .border-slate-700 { border-color: #cbd5e1 !important; }
+        body.light-mode .hover\:text-white:hover { color: #020617 !important; }
+
+        /* Season Effects */
+        #season-effect { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .particle { position: absolute; top: -20px; animation: fall linear forwards; opacity: 0.8; }
+        @keyframes fall { to { transform: translateY(105vh) rotate(720deg); } }
+
+        /* Season Themes (Background Tints) */
+        body.season-spring { background: linear-gradient(to bottom right, #1a0510, #020617); }
+        body.season-summer { background: linear-gradient(to bottom right, #0f172a, #0c4a6e); }
+        body.season-autumn { background: linear-gradient(to bottom right, #1f0f05, #020617); }
+        body.season-winter { background: linear-gradient(to bottom right, #0b1120, #1e293b); }
+        
+        /* Light mode overrides for seasons */
+        body.light-mode.season-spring { background: linear-gradient(to bottom right, #fff1f2, #f0f9ff); }
+        body.light-mode.season-autumn { background: linear-gradient(to bottom right, #fff7ed, #f0f9ff); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div id="app-header"></div>
+
+        <main id="page-content">
+        <div class="glass-card w-full p-8 rounded-3xl relative shadow-2xl animate-fade-in mb-12">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><i class="fa-solid fa-code-branch text-blue-400"></i> Lịch sử hoạt động</h2>
+            
+            <div class="relative border-l-2 border-slate-700 ml-3 space-y-8 pb-8">
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-blue-500 group-hover:bg-blue-500 transition-colors"></div>
+                    <span class="text-xs text-blue-400 font-mono mb-1 block">20/10/2023</span>
+                    <h3 class="text-lg font-bold text-white">Ra mắt phiên bản v2.0</h3>
+                    <p class="text-slate-400 text-sm mt-1">Cập nhật giao diện Glassmorphism và tích hợp trình phát nhạc.</p>
+                </div>
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-emerald-500 group-hover:bg-emerald-500 transition-colors"></div>
+                    <span class="text-xs text-emerald-400 font-mono mb-1 block">15/09/2023</span>
+                    <h3 class="text-lg font-bold text-white">Tích hợp Google Sheets API</h3>
+                    <p class="text-slate-400 text-sm mt-1">Hệ thống dữ liệu động cho phép cập nhật nội dung không cần sửa code.</p>
+                </div>
+            </div>
+        </div>
+        </main>
+
+        <div id="app-footer"></div>
+    </div>
+
+    <script src="layout.js"></script>
+</body>
+</html>
