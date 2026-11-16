@@ -4,7 +4,7 @@
  */
 
 const LAYOUT_CONFIG = {
-    avatar: 'assets/img/AVT.jpg',
+    avatar: 'src/assets/img/AVT.jpg',
     name: 'Phan Minh Thuan',
     sub: 'Software Engineer',
     playlistSheet: 'https://docs.google.com/spreadsheets/d/19rqJdnmV1fH4QhrrNCrTOZEKBZuXoXbYLXGwIERwy-o/gviz/tq?tqx=out:csv&sheet=Playlisst'
